@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import store from "./redux/store";
+
+import { Routing } from "./containers/routes.jsx";
+
+// import { bugAdded, bugRemoved, bugResolved } from "./action";
 
 function App() {
+  store.subscribe(() => {
+    console.log("Store changed...", store.getState());
+  });
+
+  // Store provides major functions:
+  // 1. dispatch() -> to send action to store
+  // 2. getState() -> to get current state
+  // 3. subscribe() -> when store gets changed, this get triggered
+
+  // Example are given below:-
+  // store.dispatch(bugAdded("Bug One"));
+  // console.log(`store.getState()`, store.getState());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Routing />
+    </React.Fragment>
   );
 }
 
